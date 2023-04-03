@@ -6,10 +6,11 @@ authors = ["MarvinBeGood <46404767+MarvinBeGood@users.noreply.github.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
-pandas = "^1.5.3"
+pandas = "2.0.0"
 pyarrow = "^11.0.0"
 flet = "^0.4.2"
 black = {extras = ["d"], version = "^23.1.0"}
+polars = "^0.16.18"
 
 [tool.poetry.dev-dependencies]
 
