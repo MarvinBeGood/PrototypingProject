@@ -8,9 +8,11 @@ authors = ["MarvinBeGood <46404767+MarvinBeGood@users.noreply.github.com>"]
 python = "^3.10"
 pandas = "2.0.0"
 pyarrow = "^11.0.0"
-flet = "^0.4.2"
+flet = "^0.5.1"
 black = {extras = ["d"], version = "^23.1.0"}
 polars = "^0.16.18"
+pyspark = ">=3.3.0,<3.4.0"
+delta-spark = "^2.3.0"
 
 [tool.poetry.dev-dependencies]
 
