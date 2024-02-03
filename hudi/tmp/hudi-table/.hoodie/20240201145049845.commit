@@ -1,0 +1,8 @@
+{
+  "partitionToWriteStats" : { },
+  "compacted" : false,
+  "extraMetadata" : {
+    "schema" : "{\"type\":\"record\",\"name\":\"hudi__table_record\",\"namespace\":\"hoodie.hudi__table\",\"fields\":[{\"name\":\"row_id\",\"type\":\"int\"},{\"name\":\"timestamp\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}},{\"name\":\"__watermark\",\"type\":\"string\"}]}"
+  },
+  "operationType" : "UPSERT"
+}

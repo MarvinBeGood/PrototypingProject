@@ -1,0 +1,38 @@
+{
+  "partitionToWriteStats" : {
+    "20240201153119358010" : [ {
+      "fileId" : "8836d563-15f0-411d-a343-adbfacf7cc62-0",
+      "path" : "20240201153119358010/8836d563-15f0-411d-a343-adbfacf7cc62-0_0-14-87_20240201153122767.parquet",
+      "cdcStats" : null,
+      "prevCommit" : "null",
+      "numWrites" : 2,
+      "numDeletes" : 0,
+      "numUpdateWrites" : 0,
+      "numInserts" : 2,
+      "totalWriteBytes" : 435287,
+      "totalWriteErrors" : 0,
+      "tempPath" : null,
+      "partitionPath" : "20240201153119358010",
+      "totalLogRecords" : 0,
+      "totalLogFilesCompacted" : 0,
+      "totalLogSizeCompacted" : 0,
+      "totalUpdatedRecordsCompacted" : 0,
+      "totalLogBlocks" : 0,
+      "totalCorruptLogBlock" : 0,
+      "totalRollbackBlocks" : 0,
+      "fileSizeInBytes" : 435287,
+      "minEventTime" : null,
+      "maxEventTime" : null,
+      "runtimeStats" : {
+        "totalScanTime" : 0,
+        "totalUpsertTime" : 0,
+        "totalCreateTime" : 587
+      }
+    } ]
+  },
+  "compacted" : false,
+  "extraMetadata" : {
+    "schema" : "{\"type\":\"record\",\"name\":\"hudi__table_record\",\"namespace\":\"hoodie.hudi__table\",\"fields\":[{\"name\":\"row_id\",\"type\":\"int\"},{\"name\":\"timestamp\",\"type\":{\"type\":\"long\",\"logicalType\":\"timestamp-micros\"}},{\"name\":\"__watermark\",\"type\":\"string\"},{\"name\":\"test\",\"type\":[\"null\",\"string\"],\"default\":null}]}"
+  },
+  "operationType" : "UPSERT"
+}

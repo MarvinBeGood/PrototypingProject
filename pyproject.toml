@@ -10,8 +10,7 @@ black = "^24.1.0"
 polars = {extras = ["deltalake"], version = "^0.20.5"}
 pandas = "^2.2.0"
 delta-spark = "2.4.0"
-
-[tool.poetry.dev-dependencies]
+pydantic = "^2.6.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
