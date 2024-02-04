@@ -19,12 +19,26 @@ from typing import Any
 import pydantic
 import pyspark
 from pyspark.errors.exceptions.captured import AnalysisException
-from pyspark.sql import functions
 from pyspark.sql import types
 from pyspark.sql.functions import col, lit, when, max
+from enum import Enum
 
 from pydantic import BaseModel, ConfigDict
 import pathlib
+
+class HudiWriteModes(Enum):
+    """
+    https://hudi.apache.org/docs/next/write_operations
+    """
+    UPSERT = "upsert"
+    INSERT = "insert"
+    BULK_INSERT = "bulk_insert"
+    DELETE = "delete"
+    DELETE_PARTITION = "delete_partition"
+    BOOTSTRAP = "bootstrap"
+    INSERT_OVERWRITE = "insert_overwrite"
+    INSERT_OVERWRITE_TABLE = "insert_overwrite_table"
+
 
 os.environ[
     "PYSPARK_PYTHON"
