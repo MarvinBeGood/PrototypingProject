@@ -26,6 +26,7 @@ from enum import Enum
 from pydantic import BaseModel, ConfigDict
 import pathlib
 
+
 class HudiWriteModes(Enum):
     """
     https://hudi.apache.org/docs/next/write_operations
@@ -148,7 +149,7 @@ class HudiTable(BaseModel):
         ).save(self.__table_path_as_string)
 
     def delete_rows_from_hudi_table(self, pipeline: PipelineABC):
-        self.__hudi_options["hoodie.datasource.write.operation"] = "delete"
+        self.__hudi_options["hoodie.datasource.write.operation"] = HudiWriteModes.DELETE.value
 
         delete_df = pipeline.execute_pipeline(df=self.read_all_data_from_hudi_table())
 
@@ -157,11 +158,11 @@ class HudiTable(BaseModel):
         ).save(self.__table_path_as_string)
 
     def time_travel_in_history(self, timestamp: str) -> pyspark.sql.DataFrame:
-        # micro_secs = timestamp.strftime(format="%f")[:3]
-
-        return self.hudi_spark_config.spark_session.read.format("hudi").option(
-            "as.of.instant", timestamp  # .strftime(format="%Y-%m-%d: %H:%M:%S.") + micro_secs
-        ).load(self.__table_path_as_string)
+        return (
+            self.hudi_spark_config.spark_session.read.format("hudi")
+            .option("as.of.instant", timestamp)
+            .load(self.__table_path_as_string)
+        )
 
     def read_all_data_from_hudi_table(self) -> pyspark.sql.DataFrame:
         return self.hudi_spark_config.spark_session.read.format("hudi").load(
@@ -170,7 +171,8 @@ class HudiTable(BaseModel):
 
     def read_meta_data_from_hudi_table(self) -> pyspark.sql.DataFrame:
         return self.hudi_spark_config.spark_session.read.format("hudi").load(
-            str(self.__table_path.joinpath(".hoodie").joinpath("metadata").absolute()))
+            str(self.__table_path.joinpath(".hoodie").joinpath("metadata").absolute())
+        )
 
 
 def create_watermark_string() -> str:
@@ -245,7 +247,11 @@ watermark = create_watermark_string()
 # hudi_table.delete_rows_from_hudi_table(DeletePipeline())
 # hudi_table.delete_rows_from_hudi_table(DeletePipelineWhereMaxWatermark())
 
-hudi_table.time_travel_in_history("20240201145807505").show(truncate=False)
-hudi_table.read_all_data_from_hudi_table().pandas_api().orderBy("__watermark").show(truncate=False)
+# hudi_table.time_travel_in_history("20240201145807505").show(truncate=False)
+# hudi_table.read_all_data_from_hudi_table().pandas_api().orderBy("__watermark").show(
+#    truncate=False
+# )
+#hudi_table.read_all_data_from_hudi_table().show(truncate=False)
+#hudi_table.read_meta_data_from_hudi_table().show(truncate=False)
 
 # shutil.rmtree(target_delta_table, ignore_errors=True)

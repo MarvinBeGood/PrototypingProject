@@ -183,18 +183,17 @@ def read_all_data(
 deltaTable = DeltaTable.forPath(spark, target_delta_table)
 #deltaTable.delete(functions.col("version") == functions.lit(get_latest_version_from_delta_table(spark, target_delta_table, True)))
 #deltaTable.restoreToVersion(2)
-df = spark.read.format("delta").option("versionAsOf", 3).load(target_delta_table)
-df.show(truncate=False)
-#
-deltaTable.vacuum(0)
+#df = spark.read.format("delta").option("versionAsOf", 3).load(target_delta_table)
+#df.show(truncate=False)
+#deltaTable.vacuum(0)
 #read_all_data(spark, target_delta_table).show(truncate=False)
 #print(get_latest_version_from_delta_table(spark, target_delta_table, True))
 
 # pyspark --packages io.delta:delta-core_2.12:2.1.0 --conf "spark.sql.extensions=io.delta.sql.DeltaSparkSessionExtension"  --conf "spark.sql.catalog.spark_catalog=org.apache.spark.sql.delta.catalog.DeltaCatalog"
-polars_delta_table ="./tmp/polars-delta-table"
-deltaTable = DeltaTable.forPath(spark, polars_delta_table)
+#polars_delta_table ="./tmp/polars-delta-table"
+#deltaTable = DeltaTable.forPath(spark, polars_delta_table)
 #deltaTable.history().show(truncate=False)
-read_all_data(spark,polars_delta_table).show(truncate=False)
+#read_all_data(spark,polars_delta_table).show(truncate=False)
 ## Upsert (merge) new data
 # print("########### Upsert new data #############")
 # newData = spark.range(0, 20)
